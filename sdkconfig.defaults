@@ -1,0 +1,35 @@
+# Defaults used when sdkconfig does not yet exist (i.e. on a fresh checkout).
+# Anything that matters for the .espdl model fitting in RAM and the partition
+# table being correct lives here so a clean build comes up working.
+#
+# Override per build with `idf.py menuconfig`.
+
+# --- Partition table ---------------------------------------------------------
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_OFFSET=0x8000
+
+# --- PSRAM (REQUIRED) --------------------------------------------------------
+# Aug-GRU activations do not fit in the ~300 kB of internal RAM left after
+# Wi-Fi/MQTT. On the ESP32-S3-WROOM-1-N16R8 the PSRAM is octal at 80 MHz.
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=16384
+CONFIG_SPIRAM_MALLOC_RESERVE_INTERNAL=32768
+
+# --- CPU at full speed -------------------------------------------------------
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+
+# --- Cache (size limits set by ESP-DL recommendations) -----------------------
+CONFIG_ESP32S3_INSTRUCTION_CACHE_32KB=y
+CONFIG_ESP32S3_INSTRUCTION_CACHE_8WAYS=y
+CONFIG_ESP32S3_INSTRUCTION_CACHE_LINE_32B=y
+CONFIG_ESP32S3_DATA_CACHE_64KB=y
+CONFIG_ESP32S3_DATA_CACHE_8WAYS=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+
+# --- Compiler ----------------------------------------------------------------
+CONFIG_COMPILER_OPTIMIZATION_PERF=y

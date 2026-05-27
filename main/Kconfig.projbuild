@@ -1,0 +1,67 @@
+menu "ESP-DL Inference Configuration"
+
+    config USE_IMU_FOR_YAW
+        bool "Fall back to IMU yaw when no mocap rotation is configured"
+        default n
+        help
+            When mocap is providing zero rotation (theta == 0), the IMU yaw can
+            be used in place of the mocap yaw.  Useful when the mocap origin is
+            arbitrary and you want yaw to be world-relative.
+
+    config LOG_INFERENCE_TIME_PER_STEP
+        bool "Log each inference latency individually"
+        default n
+        help
+            When enabled, every inference step prints its latency in
+            microseconds.  Required when computing the standard deviation of
+            inference time.  When disabled, only the mean over every 100 steps
+            is logged.
+
+    config BLINK_GPIO
+        int "Blink GPIO number"
+        range 0 48
+        default 38
+        help
+            GPIO number of the status LED (38 on the v0.1 board).
+
+    config MQTT_BROKER_URL
+        string "Broker URL"
+        default "mqtt://192.168.86.232"
+        help
+            URL of the MQTT broker to connect to.
+
+    config OBSERVATIONS_TOPIC
+        string "Observations MQTT topic"
+        default "quaid/obs/r100"
+        help
+            Topic the firmware SUBSCRIBES to in order to receive observations.
+
+    config ACTION_TOPIC
+        string "Actions MQTT topic"
+        default "quaid/act/r100"
+        help
+            Topic the firmware PUBLISHES inferred actions on.
+
+    config SETTINGS_TOPIC
+        string "Settings MQTT topic"
+        default "quaid/set/r100"
+        help
+            Topic the firmware SUBSCRIBES to for start/stop and runtime
+            settings commands.  See docs/MQTT_PROTOCOL.md for the command
+            grammar.
+
+    config MOCAP_TOPIC
+        string "MQTT topic for mocap data"
+        default "quaid/mocap/r100"
+        help
+            Topic the firmware SUBSCRIBES to for motion-capture pose updates
+            (binary MocapData struct, header byte 0x0E).
+
+    config NTP_IP
+        string "NTP server IP (optional)"
+        default "192.168.86.202"
+        help
+            Used for time sync.  Public NTP server is fine when the device is
+            online.
+
+endmenu

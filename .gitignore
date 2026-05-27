@@ -1,0 +1,28 @@
+# ESP-IDF build artefacts
+build/
+build_*/
+sdkconfig
+sdkconfig.old
+dependencies.lock
+managed_components/
+
+# Deployed model binary — drop yours into main/models/model.espdl
+main/models/model.espdl
+
+# Host-test build
+test/build/
+test_app/build/
+
+# Editor / IDE
+.idea/
+.vscode/
+cmake-build-*/
+.cache/
+
+# Misc
+*.o
+*.gcda
+*.gcno
+*.pyc
+.DS_Store
+*.swp

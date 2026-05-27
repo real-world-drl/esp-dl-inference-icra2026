@@ -1,0 +1,9 @@
+# Custom partition table for the ESP-DL inference firmware.
+#
+# The factory partition is sized at 8 MB so the .espdl model can be embedded
+# directly in flash via target_add_aligned_binary_data() in main/CMakeLists.txt.
+# NVS is required by the MQTT/Wi-Fi stack.
+#
+# Name,   Type, SubType, Offset,    Size,   Flags
+factory,  app,  factory, 0x010000,  8000K,
+nvs,      data, nvs,     0x7E0000,  0x6000,
