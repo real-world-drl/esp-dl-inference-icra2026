@@ -7,6 +7,12 @@
 
 #include "observations.h"
 
+// Disabled bool Kconfig options are absent from sdkconfig.h, so supply a 0
+// fallback to keep the expression below well-formed when the option is off.
+#ifndef CONFIG_USE_IMU_FOR_YAW
+#define CONFIG_USE_IMU_FOR_YAW 0
+#endif
+
 extern QueueHandle_t raw_observations_queue;   // owned by mqtt_handler
 extern QueueHandle_t mocap_queue;              // owned by mqtt_handler
 QueueHandle_t normalized_observations_queue;

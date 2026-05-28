@@ -28,6 +28,12 @@
 #include "model_variant.h"
 #include "observations.h"
 
+// Disabled bool Kconfig options are absent from sdkconfig.h, so supply a 0
+// fallback to keep the runtime check below well-formed when the option is off.
+#ifndef CONFIG_LOG_INFERENCE_TIME_PER_STEP
+#define CONFIG_LOG_INFERENCE_TIME_PER_STEP 0
+#endif
+
 extern "C" const char *TAG;
 extern "C" const uint8_t model_espdl[] asm("_binary_model_espdl_start");
 
