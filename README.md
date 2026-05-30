@@ -1,14 +1,14 @@
 # esp-dl-inference-icra2026
 
 ESP-IDF firmware that runs the quantised DRL actor networks produced by
-[`esp-dl-quant-icra2026`](https://github.com/petrohi/esp-dl-quant-icra2026)
+[`esp-dl-quant-icra2026`](https://github.com/real-world-drl/esp-dl-quant-icra2026)
 directly on an ESP32-S3.  Companion repository for the ICRA 2026 paper
 *Quantization of DRL Models for Embedded Microcontrollers*.
 
 The firmware is deliberately decoupled from any specific hardware setup: it
 **receives observations over MQTT, runs ESP-DL inference on-device, and
 publishes actions over MQTT**.  Anything that speaks the documented MQTT
-protocol — the [`quaid-sim-cpp`](https://github.com/petrohi/quaid-sim-cpp)
+protocol — the [`quaid-sim-cpp`](https://github.com/real-world-drl/quaid-sim-cpp)
 simulator, the real Quaid robot, or a recorded replay — can drive it.
 
 ```

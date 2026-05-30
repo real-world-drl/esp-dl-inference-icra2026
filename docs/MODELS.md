@@ -40,7 +40,7 @@ variants.
 ## Naming conventions (filename → variant mapping)
 
 Models exported by [`esp-dl-quant-icra2026`](
-https://github.com/petrohi/esp-dl-quant-icra2026) follow these prefixes:
+https://github.com/real-world-drl/esp-dl-quant-icra2026) follow these prefixes:
 
 | Filename starts with    | Variant                       |
 |-------------------------|-------------------------------|
